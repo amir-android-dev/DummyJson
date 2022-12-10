@@ -12,9 +12,9 @@
         android:id="@+id/tv_brand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/hello_blank_fragment" />
@@ -41,37 +41,57 @@
         tools:text="@string/hello_blank_fragment" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/iv_image"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_back_24"
+        app:layout_constraintBottom_toBottomOf="@id/ivSwitcher_image"
+        app:layout_constraintEnd_toStartOf="@id/ivSwitcher_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ivSwitcher_image" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivSwitcher_image"
+        android:layout_width="210dp"
+        android:layout_height="210dp"
         android:padding="5dp"
-        android:scaleType="fitXY"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_description"
         tools:src="@mipmap/ic_launcher" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_forward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_forward_ios_24"
+        app:layout_constraintBottom_toBottomOf="@id/ivSwitcher_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivSwitcher_image"
+        app:layout_constraintTop_toTopOf="@id/ivSwitcher_image" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
         android:padding="5dp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_image"
+        app:layout_constraintTop_toBottomOf="@id/ivSwitcher_image"
         tools:text="$54" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_discount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="5dp"
         android:textColor="#D32F2F"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_image"
+        app:layout_constraintTop_toBottomOf="@id/ivSwitcher_image"
         tools:text="%5" />
 
 
