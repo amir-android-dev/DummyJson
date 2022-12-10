@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.ema.dummyjson.R
 import com.ema.dummyjson.model.Product
@@ -50,20 +52,20 @@ class ProductsAdapter(var context: Context, var productList: MutableList<Product
 
         var iBack = iForward
         holder.ivBack.setOnClickListener {
-           when(iBack){
-               in iForward .. 0 ->{
-                   holder.iv.tag = product.images[iBack]
-                   Picasso.get().load(product.images[iBack]).into(holder.iv)
-                   iBack--
-                   if (iBack == product.images.size) {
-                       iBack = product.images.size
-                   }
-               }
-           }
+            when (iBack) {
+                in iForward..0 -> {
+                    holder.iv.tag = product.images[iBack]
+                    Picasso.get().load(product.images[iBack]).into(holder.iv)
+                    iBack--
+                    if (iBack == product.images.size) {
+                        iBack = product.images.size
+                    }
+                }
+            }
         }
-
-
-
+        holder.container.setOnClickListener {
+            navigateAndSendDataToDescriptionFragment(product.brand,product.description,product.discountPercentage,product.price,product.rating,product.images,it)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -74,8 +76,24 @@ class ProductsAdapter(var context: Context, var productList: MutableList<Product
         productList = updatedProductList
     }
 
-    inner class MViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private fun navigateAndSendDataToDescriptionFragment(
+        brand: String,
+        description: String,
+        discount: Double,
+        price: Int,
+        rating: Double,
+        image: List<String>,
+        view: View
+    ) {
+        val action = ProductsFragmentDirections.actionProductsFragmentToDescriptionFragment(
+            brand, description,
+            discount.toFloat(), price, rating.toFloat(), image.toTypedArray()
+        )
+        Navigation.findNavController(view).navigate(action)
+    }
 
+    inner class MViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val container: ConstraintLayout
         val tvTitle: AppCompatTextView
         val tvPrice: AppCompatTextView
         val iv: AppCompatImageView
@@ -88,6 +106,7 @@ class ProductsAdapter(var context: Context, var productList: MutableList<Product
             iv = itemView.findViewById(R.id.iv_item_products)
             ivBack = itemView.findViewById(R.id.iv_back_item_products)
             ivForward = itemView.findViewById(R.id.iv_forward_item_products)
+            container = itemView.findViewById(R.id.constraint_container_item)
         }
     }
 

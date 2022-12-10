@@ -10,5 +10,33 @@
         android:id="@+id/productsFragment"
         android:name="com.ema.dummyjson.view.ProductsFragment"
         android:label="fragment_products"
-        tools:layout="@layout/fragment_products" />
+        tools:layout="@layout/fragment_products" >
+        <action
+            android:id="@+id/action_productsFragment_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/descriptionFragment"
+        android:name="com.ema.dummyjson.view.DescriptionFragment"
+        android:label="fragment_description"
+        tools:layout="@layout/fragment_description" >
+        <argument
+            android:name="brnad"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="discount"
+            app:argType="float" />
+        <argument
+            android:name="price"
+            app:argType="integer" />
+        <argument
+            android:name="rating"
+            app:argType="float" />
+        <argument
+            android:name="image"
+            app:argType="string[]" />
+    </fragment>
 </navigation>
